@@ -1,20 +1,20 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { Card, Button } from 'antd';
 
-import { RootState } from '../../redux/reducers';
 import { Todo } from '../../types/todo';
-import actions from '../../redux/actions';
+import { deleteTodo } from '../../services/todo';
 
-interface Props {}
+interface Props {
+  todos: Todo[];
+  afterDelete: Function;
+}
 
-export default function TodoLists(props: Props): JSX.Element {
-  const dispatch = useDispatch();
+const TodoLists = (props: Props): JSX.Element => {
+  const { todos, afterDelete } = props;
 
-  const todos = useSelector(({ todos }: RootState) => todos);
-
-  const handleDelete = (id: number) => {
-    dispatch(actions.deleteById(id));
+  const handleDelete = async (id: number) => {
+    await deleteTodo(id);
+    afterDelete();
   };
 
   return (
@@ -36,4 +36,6 @@ export default function TodoLists(props: Props): JSX.Element {
       ))}
     </>
   );
-}
+};
+
+export default TodoLists;

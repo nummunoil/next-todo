@@ -1,19 +1,20 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import { Form, Input, Button } from 'antd';
-import actions from '../../redux/actions';
+import { addTodo } from '../../services/todo';
 
-interface Props {}
+interface Props {
+  afterAdd: () => void;
+}
 
-export default function AddTodo(props: Props): JSX.Element {
-  const dispatch = useDispatch();
-
+const AddTodo = (props: Props): JSX.Element => {
+  const { afterAdd } = props;
   const [form] = Form.useForm();
 
-  const onFinish = (values: any) => {
+  const onFinish = async (values: any) => {
     if (values.title === undefined || values.subtitle === undefined) return;
-    dispatch(actions.addTodo(values));
+    addTodo(values);
     form.resetFields();
+    afterAdd();
   };
 
   return (
@@ -31,4 +32,6 @@ export default function AddTodo(props: Props): JSX.Element {
       </Form.Item>
     </Form>
   );
-}
+};
+
+export default AddTodo;

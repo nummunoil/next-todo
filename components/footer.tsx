@@ -1,13 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-interface Props {
-
-}
+interface Props {}
 
 export default function Footer(props: Props) {
-  return (
-    <div className='site-layout-background text-footer'>
-      ©2022
-    </div>
-  )
+  return <div className='site-layout-background text-footer'>©2022</div>;
 }

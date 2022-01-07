@@ -1,17 +1,8 @@
-import React from "react";
-import { AppProps } from "next/app";
-import { wrapper } from "../redux";
-import '../styles/globals.css'
+import '../styles/globals.css';
+import type { AppProps } from 'next/app';
 
-interface Props {
+function MyApp({ Component, pageProps }: AppProps) {
+  return <Component {...pageProps} />;
 }
 
-function TodoApp({ Component, pageProps }: AppProps) {
-  return (
-    <>
-      <Component {...pageProps} />
-    </>
-  );
-}
-
-export default wrapper.withRedux(TodoApp);
+export default MyApp;
