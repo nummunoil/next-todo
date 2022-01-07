@@ -11,6 +11,6 @@ export const deleteTodo = async (id: number) => {
 };
 
 export const addTodo = async ({ title, subtitle }: { title: string; subtitle: string }) => {
-  await axios.post('http://localhost:3000/todo/', { title, subtitle });
+  await axios.post('http://localhost:3000/todo', { title, subtitle });
   return null;
 };
